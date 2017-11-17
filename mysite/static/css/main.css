@@ -347,11 +347,11 @@ nav {
 .content_contact input {
 	line-height: 50px;
 	font-size: 18px;
-	width: 500px;
+	width: 50%;
 	height: 50px;
 	border: 1px solid #6093e7;
 	outline: none;
-	border-radius: 3px;
+	border-radius: 5px;
 	margin-bottom: 20px;
 	text-align: center;
 }
@@ -360,10 +360,10 @@ nav {
 	line-height: 50px;
 	height: 200px;
 	font-size: 18px;
-	width: 500px;
+	width: 50%;
 	border: 1px solid #6093e7;
 	outline: none;
-	border-radius: 3px;
+	border-radius: 5px;
 	margin-bottom: 20px;
 	text-align: center;
 }
@@ -384,6 +384,8 @@ a.socialicon {
     width: 200px;
 }
 
+
+
 a.socialicon.linkedin {
     background-position: 0px 0px;
 }
@@ -402,4 +404,12 @@ a.socialicon.pinterest {
 
 a.socialicon.dribbble {
     background-position: -120px 0px;
+}
+
+a.socialicon.twitter:hover,
+a.socialicon.linkedin:hover,
+a.socialicon.facebook:hover,
+a.socialicon.pinterest:hover,
+a.socialicon.dribbble:hover {
+    opacity: 0.5;
 }
