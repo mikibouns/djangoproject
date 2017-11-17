@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>{% block title %}My store{% endblock %}</title>
+	<link href='http://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="{% static 'css/normalize.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+	<script type="text/javascript" src="{% static 'js/jquery.1.10.2.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/gnmenu.js' %}"></script>
+</head>
+<body>
+
+	<!-- HTML Markup for Top Navigation Menu -->	
+	<nav>
+		<ul>
+			<li><a href="#" class="icon icon-menu" id="btn-menu">Menu</a></li>
+			<li><a href="#">Store</a></li>
+			<li><a href="#">Support</a></li>
+		</ul>
+	</nav>
+
+	<!-- HTML Markup for Sidebar Slide Out Menu -->
+	<div id="sideNav">
+		<ul>
+			<li class="searchForm"><a href="#" class="icon icon-search"><span><input type="text" placeholder="Search" class="search" /></span></a></li>
+			<li><a href="/" class="icon icon-home"><span>Home</span></a></li>
+			<li><a href="/collections" class="icon icon-articles"><span>Collection</span></a>
+				<ul>
+					<li><a href="#"><span>Luminosa</span></a></li>
+					<li><a href="#"><span>Primavera</span></a></li>
+					<li><a href="#"><span>Regina</span></a></li>
+					<li><a href="#"><span>Tulipani</span></a></li>
+				</ul>
+			</li>
+			<li><a href="/contacts" class="icon icon-social"><span>Contacts</span></a>
+				<ul>
+					<li><a href="#"><span>Instagram</span></a></li>
+					<li><a href="#"><span>Facebook</span></a></li>
+					<li><a href="#"><span>Twitter</span></a></li>
+				</ul>			
+			</li>
+		</ul>	
+	</div>	
+
+	<div class="container">
+		{% block container %}
+		<h1>Main page</h1>
+		<p>This is the page of my store</p>
+		{% endblock %}
+	</div>
+
+	<footer class="footer">
+		<a href="#"><h6>© Copyright 2017 | mysite.com</h6></a>
+	</footer>
+</body>
+</html>
