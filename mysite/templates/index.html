@@ -14,16 +14,24 @@
 {% if request.path == '/' %}
 <style>
 	body {
-		background: url(/static/img/bg.jpg);
+		background: #fff url(/static/img/bg_2.png) no-repeat center center fixed;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
 	}
 </style>
 {% endif %}
+
 	<!-- HTML Markup for Top Navigation Menu -->	
 	<nav>
 		<ul>
 			<li><a href="#" class="icon icon-menu" id="btn-menu">Menu</a></li>
 			<li><a href="{% url 'collections' %}">Store</a></li>
-			<li><a href="#">Support</a></li>
+			<li><a href="{% url 'contacts' %}">Support</a></li>
+		</ul>
+		<ul>
+			<li class="right_nav">{{ current_date | date:"d F Y" }}</li>
 		</ul>
 	</nav>
 
@@ -42,16 +50,17 @@
 			</li>
 			<li><a href="{% url 'contacts' %}" class="icon icon-social"><span>Contacts</span></a>
 				<ul>
-					<li><a href="#"><span>Instagram</span></a></li>
+					<li><a href="#"><span>Linkedin</span></a></li>
 					<li><a href="#"><span>Facebook</span></a></li>
 					<li><a href="#"><span>Twitter</span></a></li>
+					<li><a href="#"><span>Twitter</span></a></li>
+					<li><a href="#"><span>Pinterest</span></a></li>
 				</ul>			
 			</li>
 		</ul>	
 	</div>	
 
 	<div class="container">
-		<h1>{{ url.name }}</h1>
 		{% block container %}
 		<h1>Main page</h1>
 		<p>This is the page of my store</p>

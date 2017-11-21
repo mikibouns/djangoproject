@@ -105,6 +105,14 @@ nav {
 			border-right:1px solid #ddd;
 			font-size:18px;
 		}
+
+		.right_nav {
+		    float:right;
+		    color:#5b6064;
+			display:block;
+			padding:10px 30px;
+			line-height:35px;
+		}
 		
 		nav a,
 		#sideNav a {
