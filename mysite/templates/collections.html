@@ -1,3 +1,18 @@
 {% extends 'index.html' %}
+{% load static %}
 {% block title %}collections{% endblock %}
-{% block container %}<h1>COLLETIONS</h1>{% endblock %}
+{% block container %}
+<h1>COLLETIONS</h1>
+<div class="content">
+    <ul class="catalog_list">
+    {% if collections %}
+        {% for collection in collections %}
+        <li><a href="#"><h2>{{ collection.name }}</h2></a></li>
+        <li><a href="#"><img src="{% static collection.img %}"></a></li>
+        {% endfor %}
+    {% else %}
+        <h2>The directory is empty.</h2>
+    {% endif %}
+    </ul>
+</div>
+{% endblock %}

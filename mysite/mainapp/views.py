@@ -1,11 +1,14 @@
 from django.shortcuts import render, render_to_response
+import json, os
 
 def main(request):
-    return render_to_response('index.html')
+    return render(request, 'index.html')
 
 def contacts(request):
-    return render_to_response('contacts.html')
+    return render(request, 'contacts.html')
 
 def collections(request):
-    return render_to_response('collections.html')
+    with open(os.path.join(os.getcwd(), 'static/json/base.json'), encoding='utf-8') as file:
+        collections = json.load(file)
+    return render(request, 'collections.html', {'collections': collections})
 

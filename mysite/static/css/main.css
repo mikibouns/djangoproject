@@ -10,11 +10,11 @@ html {
 body {
 	height: auto;
 	font-size:14px;
-	background: #fff url(../img/bg.jpg) no-repeat center center fixed;
+	background: #fff url(../img/bg.png) no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
-	background-size: cover;	
+	background-size: cover;
 	font-family: 'Roboto', sans-serif;
 	display: flex;
 	min-height: 100vh;
@@ -38,7 +38,7 @@ body {
 	-moz-transition: 1s ease;			
 	-ms-transition: 1s ease;						
 	transition: 1s ease;	
-	color:#fff;
+	color:#d3d3d3;
 }
 
 .container h1 {
@@ -144,7 +144,7 @@ nav {
 		width: 60px;
 		height:100%;
 /* 		border-right:1px solid #ddd;						 */
-		background-color:#ffffff;
+		background-color:#fff;
 		overflow-y: auto;	
 	}
 		
@@ -341,7 +341,6 @@ nav {
     width: 100%;
     height: 100%;
     margin-top: 100px;
-    color: #fff;
 }
 
 .content_contact input {
@@ -382,6 +381,7 @@ a.socialicon {
     display: flex;
     margin: 0 auto;
     width: 200px;
+    margin-bottom: 50px;
 }
 
 
@@ -413,3 +413,18 @@ a.socialicon.pinterest:hover,
 a.socialicon.dribbble:hover {
     opacity: 0.5;
 }
+
+/******************************************************************
+	Collections
+******************************************************************/
+
+.content li {
+    list-style-type: none;
+}
+
+.content img {
+    border: none;
+    border-bottom: 10px solid #b3d4fc;
+    padding: 0px;
+}
+

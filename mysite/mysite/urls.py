@@ -23,7 +23,7 @@ import mainapp.views as main_app
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', main_app.main),
-    url(r'^contacts/$', main_app.contacts),
-    url(r'^collections/$', main_app.collections),
+    url(r'^$', main_app.main, name='main'),
+    url(r'^contacts/$', main_app.contacts, name='contacts'),
+    url(r'^collections/$', main_app.collections, name='collections'),
 ]
