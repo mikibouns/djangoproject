@@ -14,15 +14,10 @@
 {% if request.path == '/' %}
 <style>
 	body {
-		background: #fff url(/static/img/bg_2.png) no-repeat center center fixed;
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		-o-background-size: cover;
-		background-size: cover;
+		background-image: url(/static/img/bg_2.png);
 	}
 </style>
 {% endif %}
-
 	<!-- HTML Markup for Top Navigation Menu -->	
 	<nav>
 		<ul>
@@ -58,8 +53,7 @@
 				</ul>			
 			</li>
 		</ul>	
-	</div>	
-
+	</div>
 	<div class="container">
 		{% block container %}
 		<h1>Main page</h1>

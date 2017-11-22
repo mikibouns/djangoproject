@@ -8,10 +8,10 @@ def main(request):
     return render(request, 'index.html', {'current_date': current_date})
 
 def contacts(request):
-    return render(request, 'contacts.html', {'current_date': current_date})
+    return render(request, 'contacts.html')
 
 def collections(request):
     with open(os.path.join(os.getcwd(), 'static/json/base.json'), encoding='utf-8') as file:
         collections = json.load(file)
-    return render(request, 'collections.html', {'collections': collections, 'current_date': current_date})
+    return render(request, 'collections.html', {'collections': collections})
 
