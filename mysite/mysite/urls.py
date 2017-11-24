@@ -25,5 +25,9 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', main_app.main, name='main'),
     url(r'^contacts/$', main_app.contacts, name='contacts'),
-    url(r'^collections/$', main_app.collections, name='collections'),
+    url(r'^collections/$', main_app.collections_page, name='collections'),
+    url(r'^collections/(?P<collection_name>\w+)/$', main_app.product_page, name='product_page'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

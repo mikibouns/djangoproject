@@ -3,12 +3,12 @@
 {% block title %}collections{% endblock %}
 {% block container %}
 <h1>COLLETIONS</h1>
-<div class="content">
+<div class="content_collections">
     <ul class="catalog_list">
     {% if collections %}
         {% for collection in collections %}
-        <li><a href="#"><h2>{{ collection.name | title }}</h2></a></li>
-        <li><a href="#"><img src="{% static collection.img %}"></a></li>
+        <li><a href="/collections/{{ collection.collection_name }}/"><h2>{{ collection.collection_name | title }}</h2></a></li>
+        <li><a href="/collections/{{ collection.collection_name }}/"><img src="/media/{{ collection.collection_title_img }}"></a></li>
         {% endfor %}
     {% else %}
         <h2>The directory is empty.</h2>

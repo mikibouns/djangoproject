@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import CollectionsImg, Collections
 
-# Register your models here.
+admin.site.register(CollectionsImg)
+admin.site.register(Collections)
+

@@ -23,7 +23,7 @@ body {
 
 .container {
 	text-align:center;
-	width: 70%;
+	width: 100%;
 	margin:0 auto;
 	min-height: 100vh;
 }
@@ -38,7 +38,7 @@ body {
 	-moz-transition: 1s ease;			
 	-ms-transition: 1s ease;						
 	transition: 1s ease;	
-	color:#d3d3d3;
+	color: black;
 }
 
 .container h1 {
@@ -425,12 +425,17 @@ a.socialicon.dribbble:hover {
 /******************************************************************
 	Collections
 ******************************************************************/
-
-.content li {
+.content_collections {
+	text-align:center;
+	width: 70%;
+	margin:0 auto;
+	min-height: 100vh;
+}
+.content_collections li {
     list-style-type: none;
 }
 
-.content img {
+.content_collections img {
     border: none;
     border-bottom: 10px solid #b3d4fc;
     padding: 0px;

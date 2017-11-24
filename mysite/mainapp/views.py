@@ -1,17 +1,23 @@
 from django.shortcuts import render, render_to_response
-import json, os
+from .models import Collections, CollectionsImg
+
 import datetime
 
 current_date = datetime.date.today()
+wallpaper_collections = Collections.objects.all().order_by('collection_name')
 
 def main(request):
-    return render(request, 'index.html', {'current_date': current_date})
+    return render(request, 'index.html', {'current_date': current_date, 'collections': wallpaper_collections})
 
 def contacts(request):
-    return render(request, 'contacts.html')
+    return render(request, 'contacts.html', {'collections': wallpaper_collections})
 
-def collections(request):
-    with open(os.path.join(os.getcwd(), 'static/json/base.json'), encoding='utf-8') as file:
-        collections = json.load(file)
-    return render(request, 'collections.html', {'collections': collections})
+def collections_page(request):
+    return render(request, 'collections.html', {'collections': wallpaper_collections})
 
+def product_page(request, collection_name):
+    current_collection = Collections.objects.get(collection_name=collection_name)
+    current_wallpaper_img = CollectionsImg.objects.filter(img_collection__collection_name=collection_name)
+    return render(request, 'product_page.html', {'collections': wallpaper_collections,
+                                                 'current_collection': current_collection,
+                                                 'current_wallpaper_img': current_wallpaper_img})

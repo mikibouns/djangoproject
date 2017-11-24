@@ -1,0 +1,58 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}collections{% endblock %}
+{% block css_js %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/style_pg.css' %}" />
+{% endblock %}
+{% block container %}
+<main class="container_pg">
+
+  <!-- Left Column / Headphones Image -->
+  <div class="left-column">
+    <div class="slideshow-container">
+      {% for img in current_wallpaper_img %}
+      <div class="mySlides fade">
+        <img src="/media/{{ img }}.jpg">
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Right Column -->
+  <div class="right-column">
+
+    <!-- Product Description -->
+    <div class="product-description">
+      <span>Wallpaper</span>
+      <h1>{{ current_collection.collection_name }}</h1>
+      <p>{{ current_collection.collection_description }}</p>
+    </div>
+
+    <!-- Product Configuration -->
+    <div class="product-configuration">
+
+      <!-- Product Color -->
+      <div class="product-color">
+        <span>Color</span>
+        <div>
+          <span class="dot" onclick="currentSlide(1)"></span>
+          <span class="dot" onclick="currentSlide(2)"></span>
+          <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+      </div>
+      <script type="text/javascript" src="{% static 'js/slider.js' %}"></script>
+      <!-- Contact Us -->
+      <div class="contact-us">
+        <a href="{% url 'contacts' %}">How to contact us</a>
+      </div>
+    </div>
+
+    <!-- Product Pricing -->
+    <div class="product-price">
+      <span>{{ current_collection.collection_price }}$</span>
+      <a href="#" class="cart-btn">Checkout</a>
+    </div>
+  </div>
+</main>
+{% endblock %}

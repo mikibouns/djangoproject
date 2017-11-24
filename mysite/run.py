@@ -1,4 +1,7 @@
 from subprocess import call
 
+path = 'D:\IGOR\PYTHON\DJANGO_PROJ\Scripts\python'
+runserver = '{} manage.py runserver'.format(path)
+
 if __name__ == '__main__':
-    call('python manage.py runserver 0.0.0.0:8000', shell=True)
+    call(runserver, shell=True)
