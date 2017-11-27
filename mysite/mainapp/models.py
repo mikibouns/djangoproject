@@ -11,7 +11,7 @@ class Collections(models.Model):
 
 
 class CollectionsImg(models.Model):
-    img_name = models.CharField(verbose_name='collection', max_length=32, blank=True, unique=True)
+    img_name = models.CharField(verbose_name='name', max_length=32, blank=True, unique=True)
     img_img = models.ImageField(verbose_name='img', blank=True, upload_to='media')
     img_collection = models.ForeignKey(Collections)
 
