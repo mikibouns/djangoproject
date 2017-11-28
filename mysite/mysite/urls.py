@@ -20,15 +20,15 @@ from django.conf.urls.static import static
 
 import mainapp.views as main_views
 
-
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', main_views.main, name='main'),
     url(r'^contacts/$', main_views.contacts, name='contacts'),
     url(r'^collections/$', main_views.collections_page, name='collections'),
-    url(r'^collections/', include('mainapp.urls')),
+    url(r'^collections/', include('mainapp.urls', namespace='products')),
+    url(r'^auth/', include('authapp.urls', namespace='auth')),
     # url(r'^collections/(?P<collection_name>\w+)/$', main_views.product_page, name='product_page'),
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

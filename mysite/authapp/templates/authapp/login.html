@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}contacts{% endblock %}
+{% block container %}
+{% block css_js %}
+{{ block.super }}
+<!--<link rel="stylesheet" href="{% static 'css/auth_form.css' %}" />-->
+{% endblock %}
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<form class="form-horizontal" action="{% url 'auth:login' %}" method="post">
+    {% csrf_token %}
+    {{ login_form.as_p }}
+    <br>
+    <input class="form-control" type="submit" value="войти">
+</form>
+<br/>
+<button class="btn btn-round form-control">
+<a href="{% url 'auth:register' %}" class="">
+зарегистрироваться
+</a>
+</button>
+
+
+{% endblock %}

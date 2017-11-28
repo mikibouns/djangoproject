@@ -1,10 +1,11 @@
 from django.core.management.base import BaseCommand
 from mainapp.models import Collections, CollectionsImg
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from authapp.models import AuthUsers
 import json, os
 
-
 JSON_PATH = r'\mainapp\json'
+
 
 def loadFromJSON(file_name):
     with open(os.path.join(os.getcwd() + JSON_PATH, file_name + '.json'), 'r') as file:
@@ -30,6 +31,5 @@ class Command(BaseCommand):
             new_collectionsimg = CollectionsImg(**img)
             new_collectionsimg.save()
         # Создаем суперпользователя при помощи менеджера модели
-        super_user = User.objects.create_superuser('admin',
-        'admin@mail.com', 'admin123')
-
+        super_user = AuthUsers.objects.create_superuser('admin',
+                                                        'admin@mail.com', 'admin123', au_age=18)

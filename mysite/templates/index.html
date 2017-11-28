@@ -28,7 +28,21 @@
 			<li><a href="{% url 'contacts' %}">Support</a></li>
 		</ul>
 		<ul>
-			<li class="right_nav">{{ current_date | date:"d F Y" }}</li>
+			{% if user.is_authenticated %}
+			<li class="right_nav">
+				<a href="{% url 'auth:edit' %}">
+				{{ user.first_name|default:'Пользователь' }}
+				</a>
+				<img src="{}">
+			</li>
+			{% endif %}
+			<li class="right_nav">
+				{% if user.is_authenticated %}
+				<a href="{% url 'auth:logout' %}">выйти</a>
+				{% else %}
+				<a href="{% url 'auth:login' %}">войти</a>
+				{% endif %}
+			</li>
 		</ul>
 	</nav>
 
@@ -59,6 +73,7 @@
 	</div>
 	<div class="container">
 		{% block container %}
+		{{ current_date | date:"d F Y" }}
 		<h1>Main page</h1>
 		<p>This is the page of my store</p>
 		{% endblock %}
