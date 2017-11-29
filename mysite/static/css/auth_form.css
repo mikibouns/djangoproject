@@ -1,0 +1,74 @@
+/******************************************************
+                    authorization
+*******************************************************/
+.reg_form {
+    display: block;
+    width: 50%;
+    height: 100%;
+    margin: 100px auto;
+}
+
+.user_avatar {
+    display: block;
+    max-width: 200px;
+    max-height: 200px;
+    margin: 50px auto;
+}
+
+
+.reg_form p {
+    color: black;
+    display: block;
+    text-align: left;
+	padding-left: 10px;
+}
+
+.reg_form li {
+    list-style-type: none;
+    display: none;
+}
+
+.reg_form input {
+	line-height: 50px;
+	font-size: 18px;
+	width: 100%;
+	height: 50px;
+	border: 1px solid #6093e7;
+	outline: none;
+	border-radius: 5px;
+	margin-bottom: 20px;
+	text-align: left;
+	padding-left: 10px;
+}
+
+.reg_form input[type='checkbox'] {
+    display: inline;
+	width: 20px;
+	height: 20px;
+	background: red;
+}
+
+.reg_form input[type='submit'] {
+    display: block;
+    width: 200px;
+    height: 50px;
+    border: 1px solid #b3d4fc;
+    background: #9ac6fc;
+    margin: auto;
+    margin-bottom: 10px;
+    text-align: center;
+    border-radius: 5px;
+    line-height: 50px;
+	font-size: 18px;
+	color: white;
+}
+
+.reg_form input[type='submit']:hover {
+    color: black;
+}
+
+
+.reg_form input[type='file'] {
+    display: block;
+    border: 0px;
+}

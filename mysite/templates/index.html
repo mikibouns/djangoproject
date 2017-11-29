@@ -31,16 +31,21 @@
 			{% if user.is_authenticated %}
 			<li class="right_nav">
 				<a href="{% url 'auth:edit' %}">
-				{{ user.first_name|default:'Пользователь' }}
+					<div class="nav_user_avatar">
+					{% if user.au_avatar %}
+					<img src="/media/{{ user.au_avatar }}">
+					{% endif %}
+					{{ user.first_name|default:'Пользователь' }}
+					</div>
 				</a>
-				<img src="{}">
+
 			</li>
 			{% endif %}
 			<li class="right_nav">
 				{% if user.is_authenticated %}
-				<a href="{% url 'auth:logout' %}">выйти</a>
+				<a href="{% url 'auth:logout' %}">logout</a>
 				{% else %}
-				<a href="{% url 'auth:login' %}">войти</a>
+				<a href="{% url 'auth:login' %}">login</a>
 				{% endif %}
 			</li>
 		</ul>
