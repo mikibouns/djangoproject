@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^collections/$', main_views.collections_page, name='collections'),
     url(r'^collections/', include('mainapp.urls', namespace='products')),
     url(r'^auth/', include('authapp.urls', namespace='auth')),
-    # url(r'^collections/(?P<collection_name>\w+)/$', main_views.product_page, name='product_page'),
+    url(r'^basket/', include('basketapp.urls', namespace='basket')),
 ]
 
 if settings.DEBUG:
