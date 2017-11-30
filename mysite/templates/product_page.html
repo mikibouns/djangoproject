@@ -13,7 +13,7 @@
     <div class="slideshow-container">
       {% for img in current_wallpaper_img %}
       <div class="mySlides fade">
-        <img src="/media/{{ img }}.jpg">
+        <img id="color_image" src="/media/{{ img }}.jpg">
       </div>
       {% endfor %}
     </div>
@@ -36,8 +36,8 @@
       <div class="product-color">
         <span>Color</span>
         <div>
-          {% for count in count_img %}
-          <span class="dot" onclick="currentSlide({{ count }})"></span>
+          {% for img in current_wallpaper_img %}
+          <span class="dot" onclick="currentSlide({{ forloop.counter }})"></span>
           {% endfor %}
         </div>
       </div>
@@ -51,7 +51,7 @@
     <!-- Product Pricing -->
     <div class="product-price">
       <span>{{ current_collection.collection_price }}$</span>
-      <a href="#" class="cart-btn">Checkout</a>
+      <a href="{% url 'basket:add' 1 %}" class="cart-btn">Checkout</a>
     </div>
   </div>
 </main>
