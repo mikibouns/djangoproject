@@ -3,7 +3,7 @@
 <html lang="en-US">
 <head>
 	<meta charset="UTF-8">
-	<title>{% block title %}My store{% endblock %}</title>
+	<title>{% block title %}{{ title }}{% endblock %}</title>
 	{% block css_js %}
 	<link href='http://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="{% static 'css/normalize.css' %}" />
@@ -29,13 +29,22 @@
 		</ul>
 		<ul>
 			{% if user.is_authenticated %}
+
+			<li class="right_nav">
+				<a href="{% url 'basket:edit' %}">
+					<div class="nav_user_avatar">
+						<img src="/media/basket.png">
+						<strong>{{ basket.0.total_quantity }}</strong>
+					</div>
+				</a>
+			</li>
 			<li class="right_nav">
 				<a href="{% url 'auth:edit' %}">
 					<div class="nav_user_avatar">
 					{% if user.au_avatar %}
 					<img src="/media/{{ user.au_avatar }}">
 					{% endif %}
-					{{ user.first_name|default:'Пользователь' }}
+					{{ user.first_name|default:'AnyUser' }}
 					</div>
 				</a>
 			</li>

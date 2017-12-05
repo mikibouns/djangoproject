@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>basket</title>
-</head>
-<body>
-<h1>BASKET {{ pk }}</h1>
-</body>
-</html>
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+{% block css_js %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/basket.css' %}" />
+{% endblock %}
+{% block container %}
+<div class="basket_container">
+    {% if user.first_name %}
+        {{ user.first_name|title }}
+    {% endif %}
+    {{ basket.0.total_cost|floatformat:0 }} руб
+    {{ basket.0.total_quantity }}
+
+</div>
+
+{% endblock %}

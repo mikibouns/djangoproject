@@ -1,10 +1,12 @@
 from django.shortcuts import render, HttpResponseRedirect
-from authapp.forms import UserLoginForm
+from .forms import UserLoginForm
 from mainapp.models import Collections
-from authapp.forms import UserRegisterForm
-from authapp.forms import UserEditForm
+from mainapp.views import basket_func
+from .forms import UserRegisterForm
+from .forms import UserEditForm
 from django.contrib import auth
 from django.urls import reverse
+
 
 wallpaper_collections = Collections.objects.all().order_by('collection_name')
 
@@ -21,7 +23,9 @@ def login(request):
             auth.login(request, user)
             return HttpResponseRedirect(reverse('main'))
 
-    content = {'title': title, 'login_form': login_form, 'collections': wallpaper_collections}
+    content = {'title': title,
+               'login_form': login_form,
+               'collections': wallpaper_collections}
     return render(request, 'authapp/login.html', content)
 
 def logout(request):
@@ -29,7 +33,7 @@ def logout(request):
     return HttpResponseRedirect(reverse('main'))
 
 def register(request):
-    title = 'регистрация'
+    title = 'register'
 
     if request.method == 'POST':
         register_form = UserRegisterForm(request.POST, request.FILES)
@@ -38,11 +42,13 @@ def register(request):
             return HttpResponseRedirect(reverse('auth:login'))
     else:
         register_form = UserRegisterForm()
-    content = {'title': title, 'register_form': register_form, 'collections': wallpaper_collections}
+    content = {'title': title,
+               'register_form': register_form,
+               'collections': wallpaper_collections}
     return render(request, 'authapp/register.html', content)
 
 def edit(request):
-    title = 'редактирование'
+    title = 'edit_user'
     if request.method == 'POST':
         edit_form = UserEditForm(request.POST, request.FILES,
                                      instance=request.user)
@@ -51,5 +57,8 @@ def edit(request):
             return HttpResponseRedirect(reverse('auth:edit'))
     else:
         edit_form = UserEditForm(instance=request.user)
-    content = {'title': title, 'edit_form': edit_form, 'collections': wallpaper_collections}
+    content = {'title': title,
+               'edit_form': edit_form,
+               'collections': wallpaper_collections,
+               'basket': basket_func(request)}
     return render(request, 'authapp/edit.html', content)

@@ -18,9 +18,15 @@ function showSlides(n){
 		slides[i].style.display = "none";
 	}
 	for(i=0; i < dots.length; i++){
-		dots[i].className = dots[i].className.replace("active","");
-		
+		dots[i].className = dots[i].className.replace("active","")
 	}
 	 slides[slideIndex-1].style.display = "block";
 	 dots[slideIndex-1].className+= " active";
 }
+
+//$(document).ready(function(){
+//    var id = $(".active").attr("data-product-id"));
+//    console.log(id);
+//});
+
+

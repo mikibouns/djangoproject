@@ -1,6 +1,6 @@
 {% extends 'index.html' %}
 {% load static %}
-{% block title %}collections{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 {% block css_js %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'css/style_pg.css' %}" />
@@ -10,13 +10,7 @@
 
   <!-- Left Column / Headphones Image -->
   <div class="left-column">
-    <div class="slideshow-container">
-      {% for img in current_wallpaper_img %}
-      <div class="mySlides fade">
-        <img id="color_image" src="/media/{{ img }}.jpg">
-      </div>
-      {% endfor %}
-    </div>
+    {% include 'product_img.html' %}
   </div>
 
   <!-- Right Column -->
@@ -51,7 +45,9 @@
     <!-- Product Pricing -->
     <div class="product-price">
       <span>{{ current_collection.collection_price }}$</span>
-      <a href="{% url 'basket:add' 1 %}" class="cart-btn">Checkout</a>
+      {% if user.is_authenticated %}
+      <a href="{% url 'basket:add' current_collection.pk %}" class="cart-btn">Checkout</a>
+      {% endif %}
     </div>
   </div>
 </main>
