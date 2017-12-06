@@ -2,7 +2,9 @@ from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from .models import Basket
 from mainapp.models import Collections
 from mainapp.views import basket_func, wallpaper_collections
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def basket(request):
     title = 'basket'
     content = {'basket': basket_func(request),
@@ -10,6 +12,7 @@ def basket(request):
                'collections': wallpaper_collections}
     return render(request, 'basketapp/basket.html', content)
 
+@login_required
 def basket_add(request, pk):
     product = get_object_or_404(Collections, pk=pk)
     print(product)
@@ -25,7 +28,14 @@ def basket_add(request, pk):
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+@login_required
 def basket_remove(request, pk):
     basket_record = get_object_or_404(Basket, pk=pk)
     basket_record.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+@login_required
+def basket_quantity_edit(request, pk):
+    basket_record = get_object_or_404(Basket, pk=pk)
+    basket_record
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

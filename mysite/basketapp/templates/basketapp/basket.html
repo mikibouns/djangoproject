@@ -8,11 +8,34 @@
 {% block container %}
 <div class="basket_container">
     {% if user.first_name %}
-        {{ user.first_name|title }}
+    <h2>{{ user.first_name|title }}</h2>
     {% endif %}
-    {{ basket.0.total_cost|floatformat:0 }} руб
-    {{ basket.0.total_quantity }}
+    <br/>
+    <div class="title_user_basket">
+        {{ basket.0.total_quantity|default:0 }} products<br/>
+        Total price: {{ basket.0.total_cost|floatformat:0|default:0 }} &#8381;
+    </div>
+
+
+    <ul class="user_product">
+        {% for item in basket %}
+        <li>
+            <h3>
+            {{ item.basket_product }}
+            </h3>
+            <img src="/media/{{ item.basket_product.collection_title_img }}">
+            <strong>
+                <form action="{% url 'basket:quantity_edit' item.pk %}">
+                    quantity: <input type="number" min="0" value="{{ item.basket_quantity }}">
+                    <input type="submit" id="quantity_btn" value="+"><br/>
+                </form>
+                    price: {{ item.product_cost }} &#8381;
+            </strong>
+            <br/>
+            <a href="{% url 'basket:remove' item.pk %}" id="delete_item">delete</a>
+        </li>
+        {% endfor %}
+    </ul>
 
 </div>
-
 {% endblock %}

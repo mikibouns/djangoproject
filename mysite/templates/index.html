@@ -34,7 +34,7 @@
 				<a href="{% url 'basket:edit' %}">
 					<div class="nav_user_avatar">
 						<img src="/media/basket.png">
-						<strong>{{ basket.0.total_quantity }}</strong>
+						<strong>{{ basket.0.total_quantity|default:0 }}</strong>
 					</div>
 				</a>
 			</li>
