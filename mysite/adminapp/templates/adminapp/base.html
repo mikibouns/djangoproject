@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+{% block css_js %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/admin.css' %}" />
+{% endblock %}
+{% block container %}
+{% block menu %}
+<div class="admin_container">
+    {% include 'adminapp/includes/inc_menu.html' %}
+</div>
+{% endblock %}
+
+{% endblock %}

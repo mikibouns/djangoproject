@@ -21,7 +21,8 @@ from django.conf.urls.static import static
 import mainapp.views as main_views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    # url(r'^admin/', admin.site.urls),
+    url(r'^admin/', include('adminapp.urls', namespace='admin')),
     url(r'^$', main_views.main, name='main'),
     url(r'^contacts/$', main_views.contacts, name='contacts'),
     url(r'^collections/$', main_views.collections_page, name='collections'),

@@ -54,7 +54,7 @@ def edit(request):
                                      instance=request.user)
         if edit_form.is_valid():
             edit_form.save()
-            return HttpResponseRedirect(reverse('auth:edit'))
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     else:
         edit_form = UserEditForm(instance=request.user)
     content = {'title': title,

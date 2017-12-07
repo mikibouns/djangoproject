@@ -25,7 +25,11 @@
 		<ul>
 			<li><a href="#" class="icon icon-menu" id="btn-menu">Menu</a></li>
 			<li><a href="{% url 'collections' %}">Store</a></li>
-			<li><a href="{% url 'contacts' %}">Support</a></li>
+			{% if user.is_authenticated %}
+				{% if user.is_superuser %}
+				<li><a href="{% url 'admin:users' %}">Admin panel</a></li>
+				{% endif %}
+			{% endif %}
 		</ul>
 		<ul>
 			{% if user.is_authenticated %}

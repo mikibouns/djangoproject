@@ -1,11 +1,11 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block title %}{{ title }}{% endblock %}
-{% block container %}
 {% block css_js %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'css/auth_form.css' %}" />
 {% endblock %}
+{% block container %}
 <div class="reg_form">
     <form class="form-horizontal" action="{% url 'auth:login' %}" method="post">
         {% csrf_token %}

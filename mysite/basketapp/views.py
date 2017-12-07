@@ -36,6 +36,12 @@ def basket_remove(request, pk):
 
 @login_required
 def basket_quantity_edit(request, pk):
-    basket_record = get_object_or_404(Basket, pk=pk)
-    basket_record
+    bu = basket_func(request)
+    bu2 = bu.get('basket_quantity')
+    print(bu2)
+    if request.method == 'POST':
+        quantity = request.POST.get('quantity')
+        # basket_record(baket_quantity=quantity)
+        # basket_record.save()
+        print(quantity)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

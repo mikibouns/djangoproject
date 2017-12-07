@@ -25,9 +25,10 @@
             </h3>
             <img src="/media/{{ item.basket_product.collection_title_img }}">
             <strong>
-                <form action="{% url 'basket:quantity_edit' item.pk %}">
-                    quantity: <input type="number" min="0" value="{{ item.basket_quantity }}">
-                    <input type="submit" id="quantity_btn" value="+"><br/>
+                <form method="post" action="{% url 'basket:quantity_edit' item.pk %}">{% csrf_token %}
+                    quantity: <input type="number" min="0" name="quantity"
+                                     value="{{ item.basket_quantity }}">
+                    <button type="submit" id="quantity_btn">+</button>
                 </form>
                     price: {{ item.product_cost }} &#8381;
             </strong>
