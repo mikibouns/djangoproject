@@ -23,6 +23,26 @@
 
 /* Right Column */
 
+.right-column input[type='submit'] {
+    display: block;
+    width: 100px;
+    height: 50px;
+    border: none;
+    background: #7DC855;
+    margin-bottom: 10px;
+    text-align: center;
+    border-radius: 5px;
+    line-height: 50px;
+	font-size: 18px;
+	color: white;
+}
+
+.right-column input[type='submit']:hover {
+    color: black;
+    background: #64af3d;
+	transition: 1s ease;
+}
+
 /* Product Description */
 .product-description {
   border-bottom: 1px solid #E1E8EE;

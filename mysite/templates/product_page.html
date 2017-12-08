@@ -13,42 +13,44 @@
     {% include 'product_img.html' %}
   </div>
 
-  <!-- Right Column -->
+
+    <!-- Right Column -->
   <div class="right-column">
+    <form method="post" action="{% url 'basket:add' current_collection.pk %}">{% csrf_token %}
+      <!-- Product Description -->
+      <div class="product-description">
+        <span>Wallpaper</span>
+        <h1>{{ current_collection.collection_name }}</h1>
+        <p>{{ current_collection.collection_description }}</p>
+      </div>
 
-    <!-- Product Description -->
-    <div class="product-description">
-      <span>Wallpaper</span>
-      <h1>{{ current_collection.collection_name }}</h1>
-      <p>{{ current_collection.collection_description }}</p>
-    </div>
+      <!-- Product Configuration -->
+      <div class="product-configuration">
 
-    <!-- Product Configuration -->
-    <div class="product-configuration">
-
-      <!-- Product Color -->
-      <div class="product-color">
-        <span>Color</span>
-        <div>
-          {% for img in current_wallpaper_img %}
-          <span class="dot" onclick="currentSlide({{ forloop.counter }})"></span>
-          {% endfor %}
+        <!-- Product Color -->
+        <div class="product-color">
+          <span>Color</span>
+          <div>
+            {% for img in current_wallpaper_img %}
+            <span class="dot" onclick="currentSlide({{ forloop.counter }})"></span>
+            {% endfor %}
+          </div>
+        </div>
+        <script type="text/javascript" src="{% static 'js/slider.js' %}"></script>
+        <!-- Contact Us -->
+        <div class="contact-us">
+          <a href="{% url 'contacts' %}">How to contact us</a>
         </div>
       </div>
-      <script type="text/javascript" src="{% static 'js/slider.js' %}"></script>
-      <!-- Contact Us -->
-      <div class="contact-us">
-        <a href="{% url 'contacts' %}">How to contact us</a>
-      </div>
-    </div>
 
-    <!-- Product Pricing -->
-    <div class="product-price">
-      <span>{{ current_collection.collection_price }}$</span>
-      {% if user.is_authenticated %}
-      <a href="{% url 'basket:add' current_collection.pk %}" class="cart-btn">Checkout</a>
-      {% endif %}
-    </div>
+      <!-- Product Pricing -->
+      <div class="product-price">
+        <span>{{ current_collection.collection_price }}$</span>
+        {% if user.is_authenticated %}
+        <input type="submit" value="Checkout">
+        {% endif %}
+      </div>
+    </form>
   </div>
 </main>
 {% endblock %}
