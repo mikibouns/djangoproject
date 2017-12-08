@@ -20,10 +20,12 @@
     <ul class="user_product">
         {% for item in basket %}
         <li>
-            <h3>
-            {{ item.basket_product }}
-            </h3>
-            <img src="/media/{{ item.basket_product.collection_title_img }}">
+            <a href="{% url 'products:product_page' item.basket_product %}">
+                <h3>
+                {{ item.basket_product }}
+                </h3>
+                <img src="/media/{{ item.basket_product.collection_title_img }}">
+            </a>
             <strong>
                 <form method="post" action="{% url 'basket:quantity_edit' item.pk %}">{% csrf_token %}
                     quantity: <input type="number" min="0" name="quantity"

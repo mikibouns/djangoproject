@@ -15,7 +15,6 @@ def basket(request):
 @login_required
 def basket_add(request, pk):
     product = get_object_or_404(Collections, pk=pk)
-    print(product)
     old_basket_item = Basket.objects.filter(basket_user=request.user, basket_product=product)
 
     if old_basket_item:
