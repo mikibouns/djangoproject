@@ -8,16 +8,15 @@
     display: flex;
     flex-direction: column;
     color: #000;
-
     margin: 100px auto;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .users_list p {
     color: #000;
 }
 
-.new_user {
+.users_list input {
     background: green;
     width: 100px;
     font-weight: bold;
@@ -42,4 +41,8 @@
     display: flex;
     flex-direction: column;
     margin-right: 50px;
+}
+
+.reg_form  a {
+    color: white;
 }

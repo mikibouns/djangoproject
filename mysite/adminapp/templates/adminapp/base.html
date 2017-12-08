@@ -4,12 +4,7 @@
 {% block css_js %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'css/admin.css' %}" />
+<link rel="stylesheet" href="{% static 'css/auth_form.css' %}" />
 {% endblock %}
 {% block container %}
-{% block menu %}
-<div class="admin_container">
-    {% include 'adminapp/includes/inc_menu.html' %}
-</div>
-{% endblock %}
-
 {% endblock %}

@@ -1,11 +1,12 @@
 from django.shortcuts import render, HttpResponseRedirect
+from django.contrib import auth
+from django.urls import reverse
+
 from .forms import UserLoginForm
 from mainapp.models import Collections
 from mainapp.views import basket_func
 from .forms import UserRegisterForm
 from .forms import UserEditForm
-from django.contrib import auth
-from django.urls import reverse
 
 
 wallpaper_collections = Collections.objects.all().order_by('collection_name')
