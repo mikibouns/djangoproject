@@ -30,7 +30,7 @@
                 <form method="post" action="{% url 'basket:quantity_edit' item.pk %}">{% csrf_token %}
                     quantity: <input type="number" min="1" name="quantity"
                                      value="{{ item.basket_quantity }}">
-                    <button type="submit" id="quantity_btn">+</button>
+                    <button type="submit" id="quantity_btn">ok</button>
                 </form>
                     price: {{ item.product_cost }} &#8381;
             </strong>

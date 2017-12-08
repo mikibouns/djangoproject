@@ -35,8 +35,8 @@
             <span class="dot" onclick="currentSlide({{ forloop.counter }})"></span>
             {% endfor %}
           </div>
+          <span>Quantity: </span><input type="number" min="1" name="quantity" value="1">
         </div>
-        <script type="text/javascript" src="{% static 'js/slider.js' %}"></script>
         <!-- Contact Us -->
         <div class="contact-us">
           <a href="{% url 'contacts' %}">How to contact us</a>
@@ -53,4 +53,6 @@
     </form>
   </div>
 </main>
+
+<script type="text/javascript" src="{% static 'js/slider.js' %}"></script>
 {% endblock %}

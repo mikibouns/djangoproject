@@ -7,8 +7,10 @@
     <ul class="catalog_list">
     {% if collections %}
         {% for collection in collections %}
-        <li><a href="/collections/{{ collection.collection_name }}/"><h2>{{ collection.collection_name | title }}</h2></a></li>
-        <li><a href="/collections/{{ collection.collection_name }}/"><img src="/media/{{ collection.collection_title_img }}"></a></li>
+        <a href="/collections/{{ collection.collection_name }}/">
+        <li><h2>{{ collection.collection_name | title }}</h2></li>
+        <li><img src="/media/{{ collection.collection_title_img }}"></li>
+        </a>
         {% endfor %}
     {% else %}
         <h2>The directory is empty.</h2>
