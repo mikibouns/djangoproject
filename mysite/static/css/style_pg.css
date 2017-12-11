@@ -26,6 +26,7 @@
 .product-color input[type='number'] {
     width: 50px;
     border-radius: 5px;
+    margin-left: 5px;
 }
 
 .right-column input[type='submit'] {

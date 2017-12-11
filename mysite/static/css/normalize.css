@@ -704,6 +704,16 @@ textarea {
     *zoom: 1;
 }
 
+/*===========================================================================
+    DANGER
+   ========================================================================== */
+
+danger {
+    color:red;
+    font-size: 18px;
+    font-weight: bold;
+}
+
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
    Theses examples override the primary ('mobile first') styles.

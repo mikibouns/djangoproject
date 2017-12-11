@@ -35,7 +35,9 @@
             <span class="dot" onclick="currentSlide({{ forloop.counter }})"></span>
             {% endfor %}
           </div>
+          {% if user.is_authenticated %}
           <span>Quantity: </span><input type="number" min="1" name="quantity" value="1">
+          {% endif %}
         </div>
         <!-- Contact Us -->
         <div class="contact-us">

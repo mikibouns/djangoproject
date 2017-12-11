@@ -1,10 +1,9 @@
 from django.shortcuts import render
 from .models import Collections, CollectionsImg
 from basketapp.models import Basket
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-import datetime
 
-current_date = datetime.date.today()
 wallpaper_collections = Collections.objects.all().order_by('collection_name')
 
 def basket_func(request):
@@ -17,8 +16,7 @@ def main(request):
     title = 'index'
     content = {'title': title,
                'basket': basket_func(request),
-               'collections': wallpaper_collections,
-               'current_date': current_date}
+               'collections': wallpaper_collections,}
 
     return render(request, 'index.html', content)
 
@@ -33,9 +31,20 @@ def contacts(request):
 
 def collections_page(request):
     title = 'collections'
+    paginator = Paginator(wallpaper_collections, 2)
+
+    page = request.GET.get('page')
+    try:
+        page_pagination = paginator.page(page)
+    except PageNotAnInteger:
+        page_pagination = paginator.page(1)
+    except EmptyPage:
+        page_pagination = paginator.page(paginator.num_pages)
+
     content = {'title': title,
                'basket': basket_func(request),
-               'collections': wallpaper_collections}
+               'collections': wallpaper_collections,
+               'page_pagination': page_pagination}
     return render(request, 'collections.html', content)
 
 
