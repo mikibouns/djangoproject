@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import user_passes_test
+from django.views.generic.list import ListView
+from django.utils.decorators import method_decorator
 
 from authapp.models import AuthUsers
 from mainapp.views import wallpaper_collections
@@ -9,17 +11,27 @@ from adminapp.forms import UserAdminEditForm
 from mainapp.views import basket_func
 
 
-@user_passes_test(lambda u: u.is_superuser)
-def users(request):
-    title = 'users'
-    users_list = AuthUsers.objects.all().order_by('-is_active', '-is_superuser', '-is_staff', 'username')
+class UsersListView(ListView):
+    model = AuthUsers
+    template_name = 'adminapp/users.html'
 
-    content = {'title': title,
-               'basket': basket_func(request),
-               'objects': users_list,
-               'collections': wallpaper_collections,}
+    @method_decorator(user_passes_test(lambda u: u.is_superuser))
+    def dispatch(self, *args, **kwargs):
+        return super(UsersListView, self).dispatch(*args, **kwargs)
 
-    return render(request, 'adminapp/users.html', content)
+
+
+# @user_passes_test(lambda u: u.is_superuser)
+# def users(request):
+#     title = 'users'
+#     users_list = AuthUsers.objects.all().order_by('-is_active', '-is_superuser', '-is_staff', 'username')
+#
+#     content = {'title': title,
+#                'basket': basket_func(request),
+#                'objects': users_list,
+#                'collections': wallpaper_collections,}
+#
+#     return render(request, 'adminapp/users.html', content)
 
 
 @user_passes_test(lambda u: u.is_superuser)
