@@ -20,7 +20,7 @@
     <ul class="user_product">
         {% for item in basket %}
         <li>
-            <a href="{% url 'products:product_page' item.basket_product %}">
+            <a href="{% url 'products:product_page' item.basket_product.img_collection.collection_name %}">
                 <h3>
                 {{ item.basket_product }}
                 </h3>
