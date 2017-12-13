@@ -11,27 +11,29 @@ from adminapp.forms import UserAdminEditForm
 from mainapp.views import basket_func
 
 
-class UsersListView(ListView):
-    model = AuthUsers
-    template_name = 'adminapp/users.html'
-
-    @method_decorator(user_passes_test(lambda u: u.is_superuser))
-    def dispatch(self, *args, **kwargs):
-        return super(UsersListView, self).dispatch(*args, **kwargs)
-
-
-
-# @user_passes_test(lambda u: u.is_superuser)
-# def users(request):
-#     title = 'users'
-#     users_list = AuthUsers.objects.all().order_by('-is_active', '-is_superuser', '-is_staff', 'username')
+# class UsersListView(ListView):
+#     model = AuthUsers
+#     paginate_by = 2
+#     template_name = 'adminapp/users.html'
 #
-#     content = {'title': title,
-#                'basket': basket_func(request),
-#                'objects': users_list,
-#                'collections': wallpaper_collections,}
+#     @method_decorator(user_passes_test(lambda u: u.is_superuser))
+#     def dispatch(self, *args, **kwargs):
+#         return super(UsersListView, self).dispatch(*args, **kwargs)
 #
-#     return render(request, 'adminapp/users.html', content)
+#     def get_queryset(self):
+#         return AuthUsers.objects.all().order_by('-is_active', '-is_superuser', '-is_staff', 'username')
+
+@user_passes_test(lambda u: u.is_superuser)
+def users(request):
+    title = 'users'
+    users_list = AuthUsers.objects.all().order_by('-is_active', '-is_superuser', '-is_staff', 'username')
+
+    content = {'title': title,
+               'basket': basket_func(request),
+               'objects': users_list,
+               'collections': wallpaper_collections,}
+
+    return render(request, 'adminapp/users.html', content)
 
 
 @user_passes_test(lambda u: u.is_superuser)

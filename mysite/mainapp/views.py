@@ -31,7 +31,7 @@ def contacts(request):
 
 def collections_page(request):
     title = 'collections'
-    paginator = Paginator(wallpaper_collections, 2)
+    paginator = Paginator(wallpaper_collections, 3)
 
     page = request.GET.get('page')
     try:

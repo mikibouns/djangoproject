@@ -1,10 +1,10 @@
 from django.db import models
 from django.conf import settings
-from mainapp.models import Collections
+from mainapp.models import CollectionsImg
 
 class Basket(models.Model):
     basket_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='user')
-    basket_product = models.ForeignKey(Collections, on_delete=models.CASCADE, verbose_name='product')
+    basket_product = models.ForeignKey(CollectionsImg, on_delete=models.CASCADE, verbose_name='product')
     basket_quantity = models.PositiveIntegerField(verbose_name='quantity', default=0)
     basket_datetime = models.DateTimeField(verbose_name='time_of_addition', auto_now_add=True)
 
@@ -12,7 +12,7 @@ class Basket(models.Model):
         return str(self.basket_user)
 
     def _get_product_cost(self):
-        return self.basket_product.collection_price * self.basket_quantity
+        return self.basket_product.img_collection.collection_price * self.basket_quantity
 
     product_cost = property(_get_product_cost)
 

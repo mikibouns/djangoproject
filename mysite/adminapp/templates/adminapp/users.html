@@ -5,7 +5,7 @@
     <a href="{% url 'admin:user_create' %}">
         <input type="submit" value="new user">
     </a>
-    {% for object in object_list %}
+    {% for object in objects %}
     <div class="user_record {% if not object.is_active %}not_active{% endif %}" id="user_conteiner">
         <div id="user_edit">
             <img src="/media/{{ object.au_avatar|default:'AVA1.jpg' }}" alt="{{ object.username }}">

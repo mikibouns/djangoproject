@@ -2,21 +2,23 @@
 {% load static %}
 {% block title %}{{ title }}{% endblock %}
 {% block css_js %}
-{{ block.super }}
-<link rel="stylesheet" href="{% static 'css/style_pg.css' %}" />
+    {{ block.super }}
+    <link href="{% static 'css/test.css' %}" rel="stylesheet">
+    <script src="{% static 'js/test.js' %}"></script>
 {% endblock %}
 {% block container %}
-<main class="container_pg">
+<div class="contant_class">
+    <div id="pr2"></div>
+    <div class="dot_container">
+    {% for img in current_wallpaper_img %}
+        <span class="dot" id="{{ img }}" value="{{ img.pk }}"></span>
+    {% endfor %}
+    </div>
 
-  <!-- Left Column / Headphones Image -->
-  <div class="left-column">
-    {% include 'includes/product_img.html' %}
-  </div>
+    {% include 'testapp/includes/include_test1.html' %}
 
 
-    <!-- Right Column -->
-  <div class="right-column">
-    <form method="post" action="{% url 'basket:add' current_wallpaper_img.0.pk %}">{% csrf_token %}
+        <form method="post" action="{% url 'basket:add' current_wallpaper_img.0.pk %}">{% csrf_token %}
       <!-- Product Description -->
       <div class="product-description">
         <span>Wallpaper</span>
@@ -30,11 +32,6 @@
         <!-- Product Color -->
         <div class="product-color">
           <span>Color</span>
-          <div>
-            {% for img in current_wallpaper_img %}
-            <span class="dot" id="{{ img }}" value="{{ img.pk }}"></span>
-            {% endfor %}
-          </div>
           {% if user.is_authenticated %}
           <span>Quantity: </span><input type="number" min="1" name="quantity" value="1">
           {% endif %}
@@ -53,8 +50,5 @@
         {% endif %}
       </div>
     </form>
-  </div>
-</main>
-
-<script type="text/javascript" src="{% static 'js/slider.js' %}"></script>
+</div>
 {% endblock %}

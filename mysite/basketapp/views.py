@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from .models import Basket
-from mainapp.models import Collections
+from mainapp.models import Collections, CollectionsImg
 from mainapp.views import basket_func, wallpaper_collections
 from django.contrib.auth.decorators import login_required
 
@@ -14,7 +14,7 @@ def basket(request):
 
 @login_required
 def basket_add(request, pk):
-    product = get_object_or_404(Collections, pk=pk)
+    product = get_object_or_404(CollectionsImg, pk=pk)
     old_basket_item = Basket.objects.filter(basket_user=request.user, basket_product=product)
 
     quantity = 1

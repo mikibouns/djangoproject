@@ -24,7 +24,7 @@
                 <h3>
                 {{ item.basket_product }}
                 </h3>
-                <img src="/media/{{ item.basket_product.collection_title_img }}">
+                <img src="/media/{{ item.basket_product.img_img }}">
             </a>
             <strong>
                 <form method="post" action="{% url 'basket:quantity_edit' item.pk %}">{% csrf_token %}
