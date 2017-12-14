@@ -5,9 +5,11 @@ from django.views.generic.list import ListView
 from django.utils.decorators import method_decorator
 
 from authapp.models import AuthUsers
+from mainapp.models import Collections, CollectionsImg
 from mainapp.views import wallpaper_collections
 from authapp.forms import UserRegisterForm
 from adminapp.forms import UserAdminEditForm
+from adminapp.forms import ProductEditForm
 from mainapp.views import basket_func
 
 
@@ -89,3 +91,50 @@ def user_delete(request, pk):
                'user_to_delete': user}
 
     return render(request, 'adminapp/user_delete.html', content)
+
+####################################################################################################
+
+class ProductListView(ListView):
+    model = CollectionsImg
+    # paginate_by = 2
+    template_name = 'adminapp/products_list.html'
+
+    @method_decorator(user_passes_test(lambda u: u.is_superuser))
+    def dispatch(self, *args, **kwargs):
+        return super(ProductListView, self).dispatch(*args, **kwargs)
+
+# @user_passes_test(lambda u: u.is_superuser)
+# def products(request):
+#     title = 'products_list'
+#     context = {'title': title}
+#     return render(request, 'adminapp/products_list.html', context)
+
+@user_passes_test(lambda u: u.is_superuser)
+def products_create(request):
+    title = 'products_crete'
+    context = {'title': title}
+    return render(request, 'adminapp/products_list.html', context)
+
+@user_passes_test(lambda u: u.is_superuser)
+def products_update(request, pk):
+    title = 'products_update'
+    edit_product = get_object_or_404(CollectionsImg, pk=pk)
+    if request.method == 'POST':
+        edit_form = ProductEditForm(request.POST, request.FILES, instance=edit_product)
+        if edit_form.is_valid():
+            edit_form.save()
+            return HttpResponseRedirect(reverse('admin:products_update', args=[edit_product.pk]))
+    else:
+        edit_form = ProductEditForm(instance=edit_product)
+
+    content = {'title': title,
+               'update_form': edit_form,
+               'collections': wallpaper_collections,}
+
+    return render(request, 'adminapp/products_update.html', content)
+
+@user_passes_test(lambda u: u.is_superuser)
+def products_delete(request, pk):
+    title = 'products_delete'
+    context = {'title': title}
+    return render(request, 'adminapp/products_delete.html', context)
