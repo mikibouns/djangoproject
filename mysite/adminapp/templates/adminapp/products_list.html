@@ -5,6 +5,9 @@
 {{ block.super }}
 {% endblock %}
     <div class="products_container">
+        <div class="btn_b">
+            <a href="{% url 'admin:user_create' %}">new product</a>
+        </div>
         {% for object in object_list %}
         <div class="product_str">
             <div class="product_img">
