@@ -14,6 +14,7 @@ class CollectionsImg(models.Model):
     img_name = models.CharField(verbose_name='name', max_length=32, blank=True, unique=True)
     img_img = models.ImageField(verbose_name='img', blank=True, upload_to='media')
     img_collection = models.ForeignKey(Collections)
+    img_is_active = models.BooleanField(verbose_name='active', default=True)
 
     def __str__(self):
         return self.img_name

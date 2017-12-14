@@ -15,7 +15,10 @@
             <div class="product_inf">
                 <p>Name: {{ object.img_name }}</p>
                 <p>Collection name: {{ object.img_collection }}</p>
-                <div class="product_inf_button">
+                {% if not object.img_is_active %}
+                    <danger>not active</danger>
+                {% endif %}
+                <div class="btn_a">
                     <a href="{% url 'admin:products_update' object.pk %}">edit</a>
                     <a href="{% url 'admin:products_delete' object.pk %}">delete</a>
                 </div>

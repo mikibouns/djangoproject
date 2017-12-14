@@ -123,7 +123,16 @@ def products_update(request, pk):
 @user_passes_test(lambda u: u.is_superuser)
 def products_delete(request, pk):
     title = 'products_delete'
-    context = {'title': title}
+    product = get_object_or_404(CollectionsImg, pk=pk)
+    if request.method == 'POST':
+        # user.delete()
+        product.img_is_active = False
+        product.save()
+
+    context = {'title': title,
+               'product_to_delete': product,
+               'collections': wallpaper_collections}
+
     return render(request, 'adminapp/products_delete.html', context)
 
 ####################################################################################################

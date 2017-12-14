@@ -16,17 +16,17 @@ def basket(request):
 def basket_add(request, pk):
     product = get_object_or_404(CollectionsImg, pk=pk)
     old_basket_item = Basket.objects.filter(basket_user=request.user, basket_product=product)
-
-    quantity = 1
-    if request.method == 'POST':
-        quantity = request.POST.get('quantity')
-    if old_basket_item:
-        old_basket_item[0].basket_quantity += int(quantity)
-        old_basket_item[0].save()
-    else:
-        new_basket_item = Basket(basket_user=request.user, basket_product=product)
-        new_basket_item.basket_quantity += int(quantity)
-        new_basket_item.save()
+    if product.img_is_active:# проверяет активен ли товар
+        quantity = 1
+        if request.method == 'POST':
+            quantity = request.POST.get('quantity')
+        if old_basket_item:
+            old_basket_item[0].basket_quantity += int(quantity)
+            old_basket_item[0].save()
+        else:
+            new_basket_item = Basket(basket_user=request.user, basket_product=product)
+            new_basket_item.basket_quantity += int(quantity)
+            new_basket_item.save()
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 

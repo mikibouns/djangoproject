@@ -10,6 +10,20 @@
     margin-top: 100px;
 }
 
+.btn_a {
+    display: flex;
+}
+
+.btn_a a{
+    color: white;
+    display: block;
+    margin-right: 5px;
+    margin-top: 5px;
+    padding: 5px;
+    background: #64af3d;
+    border-radius: 5px;
+}
+
 /*******************************************************************************************************************
     user_admin
 *******************************************************************************************************************/
@@ -85,20 +99,6 @@
     margin-left: 20px;
 }
 
-.product_inf_button {
-    display: flex;
-}
-
-.product_inf_button a {
-    display: block;
-    margin-right: 5px;
-    margin-top: 5px;
-    padding: 5px;
-    background: #64af3d;
-    border-radius: 5px;
-    color: white;
-}
-
 .product_inf p {
     color: black;
 }
@@ -106,8 +106,8 @@
 .product_img {
     display: flex;
     margin-bottom: 20px;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
 }
 
 .product_update_form {

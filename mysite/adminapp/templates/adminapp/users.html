@@ -5,9 +5,9 @@
 {{ block.super }}
 {% endblock %}
 <div class="users_list">
-    <a href="{% url 'admin:user_create' %}">
-        <input type="submit" value="new user">
-    </a>
+    <div class="btn_a">
+        <a class="btn_a" href="{% url 'admin:user_create' %}">new user</a>
+    </div>
     {% for object in objects %}
     <div class="user_record {% if not object.is_active %}not_active{% endif %}" id="user_conteiner">
         <div id="user_edit">
@@ -22,16 +22,10 @@
                         user
                     {% endif %}
                 {% endif %}
-                <button>
-                    <a href="{% url 'admin:user_update' object.pk %}">
-                    edit
-                    </a>
-                </button>
-                <button>
-                    <a href="{% url 'admin:user_delete' object.pk %}">
-                    delete
-                    </a>
-                </button>
+                <div class="btn_a">
+                    <a href="{% url 'admin:user_update' object.pk %}">edit</a>
+                    <a href="{% url 'admin:user_delete' object.pk %}">delete</a>
+                </div>
             </div>
         </div>
         <div class="user_info">
