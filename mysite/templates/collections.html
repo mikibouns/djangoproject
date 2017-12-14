@@ -18,7 +18,7 @@
     </ul>
 
     <div class="pagination">
-        {% if page_pagination|length < 4 %}
+        {% if collections|length > 3 %}
             {% if page_pagination.has_previous %}
                 <a href="?page={{ page_pagination.previous_page_number }}"> &laquo; </a>
             {% endif %}

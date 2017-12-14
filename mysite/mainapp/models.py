@@ -5,6 +5,7 @@ class Collections(models.Model):
     collection_description = models.TextField(verbose_name='description', blank=True, null=True)
     collection_price = models.DecimalField(verbose_name='price', max_digits=10, decimal_places=2)
     collection_title_img = models.ImageField(verbose_name='title_img', blank=True, upload_to='media')
+    collection_is_active = models.BooleanField(verbose_name='active', default=True)
 
     def __str__(self):
         return self.collection_name

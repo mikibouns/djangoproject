@@ -14,6 +14,9 @@
             </div>
             <div class="product_inf">
                 <p><strong>{{ object.collection_name|title }}</strong></p>
+                {% if not object.collection_is_active %}
+                    <danger>not active</danger>
+                {% endif %}
                 <div class="btn_a">
                     <a href="{% url 'admin:collections_update' object.pk %}">edit</a>
                     <a href="{% url 'admin:collections_delete' object.pk %}">delete</a>

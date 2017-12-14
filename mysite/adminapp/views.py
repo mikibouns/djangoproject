@@ -179,5 +179,14 @@ def collections_update(request, pk):
 @user_passes_test(lambda u: u.is_superuser)
 def collections_delete(request, pk):
     title = 'collections_delete'
-    context = {'title': title}
-    return render(request, 'adminapp/products_delete.html', context)
+    collection = get_object_or_404(Collections, pk=pk)
+    if request.method == 'POST':
+        # user.delete()
+        collection.collection_is_active = False
+        collection.save()
+
+    context = {'title': title,
+               'collection_to_delete': collection,
+               'collections': wallpaper_collections}
+
+    return render(request, 'adminapp/collections_delete.html', context)

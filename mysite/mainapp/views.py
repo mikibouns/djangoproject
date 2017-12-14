@@ -4,7 +4,7 @@ from basketapp.models import Basket
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
-wallpaper_collections = Collections.objects.all().order_by('collection_name')
+wallpaper_collections = Collections.objects.all().filter(collection_is_active=True).order_by('collection_name')
 
 def basket_func(request):
     basket = []
