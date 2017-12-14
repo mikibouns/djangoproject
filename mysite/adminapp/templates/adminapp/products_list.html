@@ -6,7 +6,7 @@
 {% endblock %}
     <div class="products_container">
         {% for object in object_list %}
-        <a class="product_str" href="{% url 'admin:products_update' object.pk %}">
+        <div class="product_str">
             <div class="product_img">
                 {% block img %}
                 <img src="{{ object.img_img }}">
@@ -15,8 +15,12 @@
             <div class="product_inf">
                 <p>Name: {{ object.img_name }}</p>
                 <p>Collection name: {{ object.img_collection }}</p>
+                <div class="product_inf_button">
+                    <a href="{% url 'admin:products_update' object.pk %}">edit</a>
+                    <a href="{% url 'admin:products_delete' object.pk %}">delete</a>
+                </div>
             </div>
-        </a>
+        </div>
         {% endfor %}
     </div>
 {% endblock %}

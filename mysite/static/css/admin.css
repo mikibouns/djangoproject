@@ -85,6 +85,20 @@
     margin-left: 20px;
 }
 
+.product_inf_button {
+    display: flex;
+}
+
+.product_inf_button a {
+    display: block;
+    margin-right: 5px;
+    margin-top: 5px;
+    padding: 5px;
+    background: #64af3d;
+    border-radius: 5px;
+    color: white;
+}
+
 .product_inf p {
     color: black;
 }
