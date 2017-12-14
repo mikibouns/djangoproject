@@ -8,22 +8,9 @@ from authapp.models import AuthUsers
 from mainapp.models import Collections, CollectionsImg
 from mainapp.views import wallpaper_collections
 from authapp.forms import UserRegisterForm
-from adminapp.forms import UserAdminEditForm
-from adminapp.forms import ProductEditForm
+from adminapp.forms import ProductEditForm, CollectionsEditForm, UserAdminEditForm
 from mainapp.views import basket_func
 
-
-# class UsersListView(ListView):
-#     model = AuthUsers
-#     paginate_by = 2
-#     template_name = 'adminapp/users.html'
-#
-#     @method_decorator(user_passes_test(lambda u: u.is_superuser))
-#     def dispatch(self, *args, **kwargs):
-#         return super(UsersListView, self).dispatch(*args, **kwargs)
-#
-#     def get_queryset(self):
-#         return AuthUsers.objects.all().order_by('-is_active', '-is_superuser', '-is_staff', 'username')
 
 @user_passes_test(lambda u: u.is_superuser)
 def users(request):
@@ -136,5 +123,52 @@ def products_update(request, pk):
 @user_passes_test(lambda u: u.is_superuser)
 def products_delete(request, pk):
     title = 'products_delete'
+    context = {'title': title}
+    return render(request, 'adminapp/products_delete.html', context)
+
+####################################################################################################
+
+class CollectionsListView(ListView):
+    model = Collections
+    # paginate_by = 2
+    template_name = 'adminapp/collections_list.html'
+
+    @method_decorator(user_passes_test(lambda u: u.is_superuser))
+    def dispatch(self, *args, **kwargs):
+        return super(CollectionsListView, self).dispatch(*args, **kwargs)
+
+# @user_passes_test(lambda u: u.is_superuser)
+# def products(request):
+#     title = 'products_list'
+#     context = {'title': title}
+#     return render(request, 'adminapp/products_list.html', context)
+
+@user_passes_test(lambda u: u.is_superuser)
+def collections_create(request):
+    title = 'collections_crete'
+    context = {'title': title}
+    return render(request, 'adminapp/products_list.html', context)
+
+@user_passes_test(lambda u: u.is_superuser)
+def collections_update(request, pk):
+    title = 'collections_update'
+    edit_collections = get_object_or_404(Collections, pk=pk)
+    if request.method == 'POST':
+        edit_form = CollectionsEditForm(request.POST, request.FILES, instance=edit_collections)
+        if edit_form.is_valid():
+            edit_form.save()
+            return HttpResponseRedirect(reverse('admin:collections_update', args=[edit_collections.pk]))
+    else:
+        edit_form = CollectionsEditForm(instance=edit_collections)
+
+    content = {'title': title,
+               'update_form': edit_form,
+               'collections': wallpaper_collections,}
+
+    return render(request, 'adminapp/products_update.html', content)
+
+@user_passes_test(lambda u: u.is_superuser)
+def collections_delete(request, pk):
+    title = 'collections_delete'
     context = {'title': title}
     return render(request, 'adminapp/products_delete.html', context)

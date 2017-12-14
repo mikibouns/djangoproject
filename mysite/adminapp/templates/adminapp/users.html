@@ -1,6 +1,9 @@
 {% extends 'adminapp/base.html' %}
 {% load static %}
 {% block container %}
+{% block admin_nav%}
+{{ block.super }}
+{% endblock %}
 <div class="users_list">
     <a href="{% url 'admin:user_create' %}">
         <input type="submit" value="new user">

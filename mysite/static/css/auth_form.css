@@ -35,7 +35,8 @@
     border: 1px solid #6093e7;
 }
 
-.reg_form input {
+.reg_form input,
+.reg_form textarea {
 	line-height: 50px;
 	font-size: 18px;
 	width: 100%;
@@ -46,6 +47,10 @@
 	margin-bottom: 20px;
 	text-align: left;
 	padding-left: 10px;
+}
+
+.reg_form textarea {
+    height: 200px;
 }
 
 .reg_form input[type='checkbox'] {

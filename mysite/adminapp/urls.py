@@ -11,4 +11,9 @@ urlpatterns = [
     url(r'^products/create/$', admin_views.products_create, name='products_create'),
     url(r'^products/update/(?P<pk>\d+)/$', admin_views.products_update, name='products_update'),
     url(r'^products/delete/(?P<pk>\d+)/$', admin_views.products_delete, name='products_delete'),
+
+    url(r'^collections/read/$', admin_views.CollectionsListView.as_view(), name='collections'),
+    url(r'^collections/create/$', admin_views.collections_create, name='collections_create'),
+    url(r'^collections/update/(?P<pk>\d+)/$', admin_views.collections_update, name='collections_update'),
+    url(r'^collections/delete/(?P<pk>\d+)/$', admin_views.collections_delete, name='collections_delete'),
 ]

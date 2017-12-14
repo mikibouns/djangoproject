@@ -6,17 +6,17 @@
 {% endblock %}
     <div class="products_container">
         {% for object in object_list %}
-        <a class="product_str" href="{% url 'admin:products_update' object.pk %}">
+        <a class="product_str" href="{% url 'admin:collections_update' object.pk %}">
             <div class="product_img">
                 {% block img %}
-                <img src="{{ object.img_img }}">
+                <img src="{{ object.collection_title_img }}">
                 {% endblock %}
             </div>
             <div class="product_inf">
-                <p>Name: {{ object.img_name }}</p>
-                <p>Collection name: {{ object.img_collection }}</p>
+                <p><strong>{{ object.collection_name|title }}</strong></p>
             </div>
         </a>
         {% endfor %}
     </div>
 {% endblock %}
+

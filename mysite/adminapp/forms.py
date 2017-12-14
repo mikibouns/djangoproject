@@ -12,3 +12,8 @@ class ProductEditForm(forms.ModelForm):
     class Meta:
         model = CollectionsImg
         fields = '__all__'
+
+class CollectionsEditForm(forms.ModelForm):
+    class Meta:
+        model = Collections
+        fields = '__all__'
