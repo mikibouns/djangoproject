@@ -94,8 +94,18 @@ def products(request, list_filter):
 @user_passes_test(lambda u: u.is_superuser)
 def products_create(request):
     title = 'products_crete'
-    context = {'title': title}
-    return render(request, 'adminapp/products_list.html', context)
+    if request.method == 'POST':
+        product_form = ProductEditForm(request.POST, request.FILES)
+        if product_form.is_valid():
+            product_form.save()
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    else:
+        product_form = ProductEditForm()
+    context = {'title': title,
+               'update_form': product_form,
+               'basket': basket_func(request),
+               'collections': wallpaper_collections}
+    return render(request, 'adminapp/products_update.html', context)
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -121,7 +131,7 @@ def products_delete(request, pk):
     title = 'products_delete'
     product = get_object_or_404(CollectionsImg, pk=pk)
     if request.method == 'POST':
-        # user.delete()
+        # product.delete()
         product.img_is_active = False
         product.save()
     context = {'title': title,
@@ -156,8 +166,18 @@ def collections(request):
 @user_passes_test(lambda u: u.is_superuser)
 def collections_create(request):
     title = 'collections_crete'
-    context = {'title': title}
-    return render(request, 'adminapp/products_list.html', context)
+    if request.method == 'POST':
+        collection_form = CollectionsEditForm(request.POST, request.FILES)
+        if collection_form.is_valid():
+            collection_form.save()
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    else:
+        collection_form = CollectionsEditForm()
+    context = {'title': title,
+               'update_form': collection_form,
+               'basket': basket_func(request),
+               'collections': wallpaper_collections}
+    return render(request, 'adminapp/products_update.html', context)
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -183,7 +203,7 @@ def collections_delete(request, pk):
     title = 'collections_delete'
     collection = get_object_or_404(Collections, pk=pk)
     if request.method == 'POST':
-        # user.delete()
+        # collection.delete()
         collection.collection_is_active = False
         collection.save()
     context = {'title': title,

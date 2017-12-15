@@ -6,7 +6,7 @@
 {% endblock %}
     <div class="products_container">
         <div class="btn_b">
-            <a href="{% url 'admin:user_create' %}">new product</a>
+            <a href="{% url 'admin:products_create' %}">new product</a>
         </div>
         {% for object in object_list %}
         <div class="product_str">
