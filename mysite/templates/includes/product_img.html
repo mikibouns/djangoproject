@@ -1,9 +1,5 @@
     <div class="slideshow-container">
         <div class="mySlides fade">
-            {% if current_wallpaper_img.0.img_is_active %}
-                <img id="color_image" src="{{ current_wallpaper_img.0.img_img }}">
-            {% else %}
-                <img id="color_image" src="/media/not_available.png">
-            {% endif %}
+            <img id="color_image" src="{{ current_wallpaper_img.0.img_img }}">
         </div>
     </div>

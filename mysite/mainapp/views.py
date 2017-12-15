@@ -51,7 +51,7 @@ def collections_page(request):
 def product_page(request, collection_name):
     title = 'product_page'
     current_collection = Collections.objects.get(collection_name=collection_name)
-    current_wallpaper_img = CollectionsImg.objects.filter(img_collection__collection_name=collection_name)
+    current_wallpaper_img = CollectionsImg.objects.filter(img_collection__collection_name=collection_name, img_is_active=True)
     content = {'title': title,
                'collections': wallpaper_collections,
                'current_collection': current_collection,

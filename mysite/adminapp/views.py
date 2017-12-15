@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import user_passes_test
-from django.views.generic.list import ListView
-from django.utils.decorators import method_decorator
+# from django.views.generic.list import ListView
+# from django.utils.decorators import method_decorator
 
 from authapp.models import AuthUsers
 from mainapp.models import Collections, CollectionsImg
@@ -12,16 +12,16 @@ from adminapp.forms import ProductEditForm, CollectionsEditForm, UserAdminEditFo
 from mainapp.views import basket_func
 
 
+###################################### USERS ###############################################
+
 @user_passes_test(lambda u: u.is_superuser)
 def users(request):
     title = 'users'
     users_list = AuthUsers.objects.all().order_by('-is_active', '-is_superuser', '-is_staff', 'username')
-
     content = {'title': title,
                'basket': basket_func(request),
                'objects': users_list,
-               'collections': wallpaper_collections,}
-
+               'collections': wallpaper_collections, }
     return render(request, 'adminapp/users.html', content)
 
 
@@ -35,12 +35,10 @@ def user_create(request):
             return HttpResponseRedirect(reverse('admin:users'))
     else:
         user_form = UserRegisterForm()
-
     content = {'title': title,
                'basket': basket_func(request),
                'collections': wallpaper_collections,
                'update_form': user_form}
-
     return render(request, 'adminapp/user_update.html', content)
 
 
@@ -55,12 +53,10 @@ def user_update(request, pk):
             return HttpResponseRedirect(reverse('admin:user_update', args=[edit_user.pk]))
     else:
         edit_form = UserAdminEditForm(instance=edit_user)
-
     content = {'title': title,
                'basket': basket_func(request),
                'update_form': edit_form,
-               'collections': wallpaper_collections,}
-
+               'collections': wallpaper_collections, }
     return render(request, 'adminapp/user_update.html', content)
 
 
@@ -72,35 +68,35 @@ def user_delete(request, pk):
         # user.delete()
         user.is_active = False
         user.save()
-
     content = {'title': title,
                'basket': basket_func(request),
                'user_to_delete': user}
-
     return render(request, 'adminapp/user_delete.html', content)
 
-####################################################################################################
 
-class ProductListView(ListView):
-    model = CollectionsImg
-    # paginate_by = 2
-    template_name = 'adminapp/products_list.html'
+###################################### PRODUCTS ###############################################
 
-    @method_decorator(user_passes_test(lambda u: u.is_superuser))
-    def dispatch(self, *args, **kwargs):
-        return super(ProductListView, self).dispatch(*args, **kwargs)
+@user_passes_test(lambda u: u.is_superuser)
+def products(request, list_filter):
+    title = 'products_list'
+    if list_filter == 'all':
+        products_list = CollectionsImg.objects.all().order_by('img_collection')
+    else:
+        products_list = CollectionsImg.objects.filter(img_collection__collection_name=list_filter).order_by(
+            'img_collection')
+    context = {'title': title,
+               'object_list': products_list,
+               'basket': basket_func(request),
+               'collections': wallpaper_collections}
+    return render(request, 'adminapp/products_list.html', context)
 
-# @user_passes_test(lambda u: u.is_superuser)
-# def products(request):
-#     title = 'products_list'
-#     context = {'title': title}
-#     return render(request, 'adminapp/products_list.html', context)
 
 @user_passes_test(lambda u: u.is_superuser)
 def products_create(request):
     title = 'products_crete'
     context = {'title': title}
     return render(request, 'adminapp/products_list.html', context)
+
 
 @user_passes_test(lambda u: u.is_superuser)
 def products_update(request, pk):
@@ -113,12 +109,12 @@ def products_update(request, pk):
             return HttpResponseRedirect(reverse('admin:products_update', args=[edit_product.pk]))
     else:
         edit_form = ProductEditForm(instance=edit_product)
-
     content = {'title': title,
                'update_form': edit_form,
-               'collections': wallpaper_collections,}
-
+               'basket': basket_func(request),
+               'collections': wallpaper_collections, }
     return render(request, 'adminapp/products_update.html', content)
+
 
 @user_passes_test(lambda u: u.is_superuser)
 def products_delete(request, pk):
@@ -128,35 +124,41 @@ def products_delete(request, pk):
         # user.delete()
         product.img_is_active = False
         product.save()
-
     context = {'title': title,
                'product_to_delete': product,
+               'basket': basket_func(request),
                'collections': wallpaper_collections}
-
     return render(request, 'adminapp/products_delete.html', context)
 
-####################################################################################################
 
-class CollectionsListView(ListView):
-    model = Collections
-    # paginate_by = 2
-    template_name = 'adminapp/collections_list.html'
+###################################### COLLECTIONS ###############################################
 
-    @method_decorator(user_passes_test(lambda u: u.is_superuser))
-    def dispatch(self, *args, **kwargs):
-        return super(CollectionsListView, self).dispatch(*args, **kwargs)
+# class CollectionsListView(ListView):
+#     model = Collections
+#     # paginate_by = 2
+#     template_name = 'adminapp/collections_list.html'
+#
+#     @method_decorator(user_passes_test(lambda u: u.is_superuser))
+#     def dispatch(self, *args, **kwargs):
+#         return super(CollectionsListView, self).dispatch(*args, **kwargs)
 
-# @user_passes_test(lambda u: u.is_superuser)
-# def products(request):
-#     title = 'products_list'
-#     context = {'title': title}
-#     return render(request, 'adminapp/products_list.html', context)
+@user_passes_test(lambda u: u.is_superuser)
+def collections(request):
+    title = 'collections_list'
+    collections_list = Collections.objects.all().order_by('collection_name')
+    context = {'title': title,
+               'object_list': collections_list,
+               'basket': basket_func(request),
+               'collections': wallpaper_collections}
+    return render(request, 'adminapp/collections_list.html', context)
+
 
 @user_passes_test(lambda u: u.is_superuser)
 def collections_create(request):
     title = 'collections_crete'
     context = {'title': title}
     return render(request, 'adminapp/products_list.html', context)
+
 
 @user_passes_test(lambda u: u.is_superuser)
 def collections_update(request, pk):
@@ -169,12 +171,12 @@ def collections_update(request, pk):
             return HttpResponseRedirect(reverse('admin:collections_update', args=[edit_collections.pk]))
     else:
         edit_form = CollectionsEditForm(instance=edit_collections)
-
     content = {'title': title,
                'update_form': edit_form,
-               'collections': wallpaper_collections,}
-
+               'basket': basket_func(request),
+               'collections': wallpaper_collections, }
     return render(request, 'adminapp/products_update.html', content)
+
 
 @user_passes_test(lambda u: u.is_superuser)
 def collections_delete(request, pk):
@@ -184,9 +186,8 @@ def collections_delete(request, pk):
         # user.delete()
         collection.collection_is_active = False
         collection.save()
-
     context = {'title': title,
                'collection_to_delete': collection,
+               'basket': basket_func(request),
                'collections': wallpaper_collections}
-
     return render(request, 'adminapp/collections_delete.html', context)

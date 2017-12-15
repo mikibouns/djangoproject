@@ -32,11 +32,7 @@
           <span>Color</span>
           <div>
             {% for img in current_wallpaper_img %}
-              {% if img.img_is_active %}
                 <span class="dot" id="{{ img.img_img }}" value="{{ img.pk }}"></span>
-              {% else %}
-                <span class="dot" id="/media/not_available.png" value="{{ img.pk }}"></span>
-              {% endif %}
             {% endfor %}
           </div>
           {% if user.is_authenticated %}

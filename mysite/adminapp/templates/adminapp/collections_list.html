@@ -11,9 +11,7 @@
         {% for object in object_list %}
         <div class="product_str">
             <div class="product_img">
-                {% block img %}
-                <img src="{{ object.collection_title_img }}">
-                {% endblock %}
+                <a href="{% url 'admin:products' object.collection_name %}"><img src="{{ object.collection_title_img }}"></a>
             </div>
             <div class="product_inf">
                 <p><strong>{{ object.collection_name|title }}</strong></p>

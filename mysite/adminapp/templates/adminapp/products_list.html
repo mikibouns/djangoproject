@@ -11,9 +11,7 @@
         {% for object in object_list %}
         <div class="product_str">
             <div class="product_img">
-                {% block img %}
                 <img src="{{ object.img_img }}">
-                {% endblock %}
             </div>
             <div class="product_inf">
                 <p>Name: {{ object.img_name }}</p>

@@ -12,7 +12,7 @@
         <a href="{% url 'main' %}">HOME</a>
         <a href="{% url 'admin:users' %}">USERS</a>
         <a href="{% url 'admin:collections' %}">COLLECTIONS</a>
-        <a href="{% url 'admin:products' %}">PRODUCTS</a>
+        <a href="{% url 'admin:products' 'all' %}">PRODUCTS</a>
     </div>
     {% endblock %}
 {% endblock %}
